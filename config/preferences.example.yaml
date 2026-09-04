@@ -1,0 +1,71 @@
+profile:
+  target_roles:
+    - Forward Deployed Engineer
+    - Field Engineer
+    - Solutions Architect
+    - Staff Software Engineer
+    - Principal Software Engineer
+    - AI Engineer
+    - Data Engineer
+
+employment:
+  allowed:
+    - full_time
+    - contract
+  preferred: full_time
+
+visa:
+  h1b_support_required: true
+  accepted_values:
+    - sponsorship
+    - transfer
+
+location:
+  preferred:
+    - Bay Area, CA
+    - San Francisco, CA
+    - San Jose, CA
+    - Remote
+  acceptable_work_modes:
+    - remote
+    - hybrid
+
+scoring:
+  thresholds:
+    strong_match: 85
+    possible_match: 65
+  weights:
+    role_match: 30
+    employment_type: 15
+    visa: 25
+    location: 15
+    work_mode: 10
+    compensation: 5
+
+source_signal:
+  weights:
+    direct_company_recruiter: 30
+    company_owned_domain: 20
+    personalized_outreach: 20
+    linkedin_direct_message: 15
+    profile_reference: 15
+    staffing_agency: 5
+    automated_digest: -15
+    historically_poor_source: -25
+
+unsubscribe_policy:
+  enabled: true
+  minimum_job_messages: 8
+  max_positive_match_rate: 0.10
+  minimum_reject_rate: 0.70
+  require_zero_strong_matches: true
+
+gmail:
+  lookback_hours: 24
+  labels:
+    direct_outreach: Jobs/Direct-Outreach
+    strong_match: Jobs/Strong-Match
+    possible_match: Jobs/Possible-Match
+    needs_review: Jobs/Needs-Review
+    rejected: Jobs/Rejected
+    processed: Jobs/Processed

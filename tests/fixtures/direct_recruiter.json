@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-direct-recruiter",
+  "sender": "Maya Chen <maya@acme.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "Staff AI Engineer opportunity at Acme",
+  "body_text": "Hi Taylor, I found your profile while looking for engineers with production AI experience. I recruit directly for Acme. We are hiring a full-time Staff AI Engineer in San Francisco with a hybrid schedule. This role can support an existing H-1B transfer. Would you have time to speak this week?",
+  "preview": "Hi Taylor, I found your profile while looking for engineers with production AI experience."
+}

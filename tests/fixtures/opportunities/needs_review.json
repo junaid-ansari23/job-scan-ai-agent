@@ -1,0 +1,13 @@
+{
+  "message_id": "opportunity-review",
+  "job_related": true,
+  "company": "Startup",
+  "role": "AI Engineer",
+  "employment_type": "UNKNOWN",
+  "location": "San Jose, CA",
+  "work_mode": "UNKNOWN",
+  "h1b_support": "UNKNOWN",
+  "source_type": "DIRECT_COMPANY_RECRUITER",
+  "confidence": 0.7,
+  "evidence": ["The message does not state employment type, work mode, or visa support."]
+}

@@ -1,0 +1,13 @@
+{
+  "message_id": "opportunity-rejected",
+  "job_related": true,
+  "company": "OnsiteCo",
+  "role": "Staff Software Engineer",
+  "employment_type": "FULL_TIME",
+  "location": "Austin, TX",
+  "work_mode": "ONSITE",
+  "h1b_support": "NO",
+  "source_type": "COMPANY_JOB_ALERT",
+  "confidence": 0.94,
+  "evidence": ["The role is onsite and cannot provide visa sponsorship or transfer."]
+}

@@ -1,0 +1,14 @@
+{
+  "message_id": "opportunity-strong",
+  "job_related": true,
+  "company": "Acme",
+  "role": "Staff AI Engineer",
+  "employment_type": "FULL_TIME",
+  "location": "San Francisco, CA",
+  "work_mode": "HYBRID",
+  "compensation": "$210,000-$250,000",
+  "h1b_support": "YES",
+  "source_type": "DIRECT_COMPANY_RECRUITER",
+  "confidence": 0.96,
+  "evidence": ["Full-time hybrid Staff AI Engineer role with H1B transfer support."]
+}

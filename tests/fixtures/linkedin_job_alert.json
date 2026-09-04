@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-linkedin-alert",
+  "sender": "LinkedIn Jobs <jobs-noreply@linkedin.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "New jobs matching AI Engineer",
+  "body_text": "Your automated job alert has 12 new AI Engineer jobs. Browse all recommendations and update your alert preferences.",
+  "preview": "Your automated job alert has 12 new AI Engineer jobs."
+}

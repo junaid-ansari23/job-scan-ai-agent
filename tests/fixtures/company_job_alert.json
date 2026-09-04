@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-company-alert",
+  "sender": "ExampleCo Careers <careers@exampleco.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "New roles from ExampleCo Careers",
+  "body_text": "You subscribed to ExampleCo job alerts. New openings include Data Engineer and Solutions Architect. Visit our careers site for job details.",
+  "preview": "You subscribed to ExampleCo job alerts."
+}

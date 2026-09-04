@@ -1,0 +1,13 @@
+{
+  "message_id": "opportunity-possible",
+  "job_related": true,
+  "company": "ExampleCo",
+  "role": "Software Developer",
+  "employment_type": "CONTRACT",
+  "location": "Remote",
+  "work_mode": "REMOTE",
+  "h1b_support": "YES",
+  "source_type": "STAFFING_AGENCY",
+  "confidence": 0.82,
+  "evidence": ["Remote contract software engineering role."]
+}

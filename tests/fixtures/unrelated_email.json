@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-unrelated",
+  "sender": "Community Library <notices@library.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "Your library book is due",
+  "body_text": "This is a reminder that your borrowed book is due next Tuesday. Renew it through your library account.",
+  "preview": "This is a reminder that your borrowed book is due next Tuesday."
+}

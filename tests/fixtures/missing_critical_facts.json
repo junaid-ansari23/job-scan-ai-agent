@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-missing-critical",
+  "sender": "Recruiting <recruiting@startup.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "Engineering opportunity",
+  "body_text": "We enjoyed reviewing your background and would like to discuss an engineering opportunity at our startup. Please reply if you are interested.",
+  "preview": "We enjoyed reviewing your background and would like to discuss an engineering opportunity."
+}

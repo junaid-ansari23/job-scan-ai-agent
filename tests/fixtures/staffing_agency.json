@@ -1,0 +1,8 @@
+{
+  "message_id": "fixture-staffing-agency",
+  "sender": "Jordan <jordan@talent-partners.example>",
+  "recipients": ["candidate@example.test"],
+  "subject": "Urgent contract Python developer role",
+  "body_text": "Our staffing agency is sourcing a six-month contract Python developer for a client in Austin. The position is onsite. Compensation and visa support were not provided by the client.",
+  "preview": "Our staffing agency is sourcing a six-month contract Python developer."
+}
