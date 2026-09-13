@@ -4,6 +4,7 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from app.main import _load_email_fixture, _load_opportunity, main
+from app.models.domain import JobOpportunity
 from app.models.email import EmailMessage
 
 
@@ -88,3 +89,36 @@ def test_load_opportunity_rejects_invalid_json(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="Invalid job opportunity"):
         _load_opportunity(fixture)
+
+
+def test_process_command_prints_completed_state_without_email_body(
+    monkeypatch: pytest.MonkeyPatch, capsys: object
+) -> None:
+    monkeypatch.setenv("OPENAI_API_KEY", "local-test-placeholder")
+    monkeypatch.setenv("OPENAI_MODEL", "test-model")
+    extractor = MagicMock()
+    extractor.extract.return_value = JobOpportunity.model_validate_json(
+        Path("tests/fixtures/opportunities/strong_match.json").read_text(
+            encoding="utf-8"
+        )
+    ).model_copy(update={"message_id": "fixture-direct-recruiter"})
+
+    with (
+        patch("openai.OpenAI", return_value=MagicMock()),
+        patch("app.main.OpenAIJobExtractor", return_value=extractor),
+    ):
+        result = main(
+            [
+                "process",
+                "--file",
+                "tests/fixtures/direct_recruiter.json",
+                "--preferences",
+                "config/preferences.example.yaml",
+            ]
+        )
+
+    output = capsys.readouterr().out  # type: ignore[attr-defined]
+    assert result == 0
+    assert '"status": "COMPLETED"' in output
+    assert '"decision": "STRONG_MATCH"' in output
+    assert "I found your profile" not in output

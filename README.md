@@ -123,6 +123,30 @@ hard constraints. A known hard failure produces `REJECT`; an unresolved hard
 requirement produces `NEEDS_REVIEW`. Location and compensation affect scoring
 but are not hard rejection rules.
 
+## Day 4 bounded orchestration
+
+Day 4 connects fixture loading, structured extraction, and deterministic
+evaluation through an allow-listed tool registry and bounded state machine:
+
+```powershell
+python -m app.main process `
+  --file tests/fixtures/direct_recruiter.json `
+  --preferences config/preferences.example.yaml `
+  --max-iterations 4 `
+  --dry-run
+```
+
+This command requires the local `OPENAI_API_KEY` and `OPENAI_MODEL` settings and
+makes an OpenAI API request. The resulting JSON contains the typed run state,
+opportunity, evaluation, and sanitized tool trace. It never includes the source
+email body in the trace.
+
+The Day 4 CLI always runs in dry-run mode. Unknown tools are rejected,
+side-effecting tools are blocked before execution, and processing terminates on
+success, failure, or the configured iteration limit. See
+[`docs/DAY4_ORCHESTRATION.md`](docs/DAY4_ORCHESTRATION.md) for the state-machine
+invariants and revision guidance.
+
 ## Recommended development mode
 
 Build vertically. Complete one end-to-end slice before adding the next capability:

@@ -4,6 +4,7 @@ import logging
 from pathlib import Path
 from typing import Sequence
 
+from app.agent.orchestrator import JobTriageOrchestrator
 from app.config import Settings, load_preferences
 from app.models.domain import JobOpportunity
 from app.models.email import EmailMessage
@@ -50,6 +51,34 @@ def _build_parser() -> argparse.ArgumentParser:
         type=Path,
         default=Path("config/preferences.yaml"),
         help="Path to preferences YAML",
+    )
+    process = subparsers.add_parser(
+        "process", help="Extract and evaluate one saved email through the bounded agent"
+    )
+    process.add_argument("--file", type=Path, required=True, help="Email fixture JSON")
+    process.add_argument(
+        "--preferences",
+        type=Path,
+        default=Path("config/preferences.yaml"),
+        help="Path to preferences YAML",
+    )
+    process.add_argument(
+        "--max-iterations",
+        type=int,
+        default=4,
+        help="Maximum number of bounded tool calls",
+    )
+    process.add_argument(
+        "--max-input-chars",
+        type=int,
+        default=20_000,
+        help="Maximum email body characters sent to the model",
+    )
+    process.add_argument(
+        "--dry-run",
+        action="store_true",
+        default=True,
+        help="Keep all side effects disabled (always enabled for Day 4)",
     )
     return parser
 
@@ -127,6 +156,29 @@ def main(argv: Sequence[str] | None = None) -> int:
         result = evaluate_job(opportunity, preferences)
         print(result.model_dump_json(indent=2))
         return 0
+
+    if args.command == "process":
+        if not settings.openai_api_key:
+            raise ValueError("OPENAI_API_KEY is required for live fixture processing.")
+        if not settings.openai_model:
+            raise ValueError("OPENAI_MODEL is required for live fixture processing.")
+        from openai import OpenAI
+
+        message = _load_email_fixture(args.file)
+        preferences = load_preferences(args.preferences)
+        extractor = OpenAIJobExtractor(
+            client=OpenAI(api_key=settings.openai_api_key),
+            model=settings.openai_model,
+            max_input_chars=args.max_input_chars,
+        )
+        state = JobTriageOrchestrator(
+            extractor,
+            preferences,
+            max_iterations=args.max_iterations,
+            dry_run=True,
+        ).process(message)
+        print(state.model_dump_json(indent=2))
+        return 0 if state.status.value == "COMPLETED" else 1
 
     return 2
 

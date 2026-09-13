@@ -1,12 +1,12 @@
 # Project Status
 
-Last updated: 2026-08-31
+Last updated: 2026-09-05
 
 ## Current milestone
 
-Day 3 deterministic preference evaluation is implemented and covered by
-automated tests. The remaining external verification activities are a live,
-read-only Gmail smoke test and a user-approved OpenAI fixture extraction.
+Day 4 bounded orchestration is implemented and covered by automated tests. The
+remaining external verification activities are a live, read-only Gmail smoke
+test and a user-approved OpenAI fixture/process run.
 
 ## Completed
 
@@ -60,7 +60,19 @@ read-only Gmail smoke test and a user-approved OpenAI fixture extraction.
 - Strong and possible threshold comparisons are inclusive.
 - Local evaluation CLI and strong, possible, review, and rejection fixtures
   added.
-- Automated test suite passes: **40 tests passed**.
+- Typed in-memory agent state, stages, run statuses, and sanitized tool traces
+  implemented.
+- Allow-listed tool registry rejects unknown and duplicate tools.
+- Dry-run blocks tools marked as side-effecting before their handlers execute.
+- Bounded state machine connects extraction and deterministic evaluation.
+- Maximum-iteration, tool-failure, invalid-output, and message-ID mismatch paths
+  fail closed.
+- Raw email bodies, subjects, exception messages, and arbitrary objects are not
+  copied into tool traces.
+- Combined `process` CLI implemented and forced to dry-run mode.
+- Day 4 architecture and safe-extension guidance documented in
+  `docs/DAY4_ORCHESTRATION.md`.
+- Automated test suite passes: **53 tests passed**.
 
 ## Safety status
 
@@ -100,10 +112,10 @@ committed.
   normalization adjustments.
 - SQLite models, repositories, and migrations are not implemented yet.
 - Live OpenAI extraction has not been run; automated tests use mocked responses.
-- Source-signal scoring, orchestration, persistence, labeling, reporting, and
-  feedback are not implemented yet.
-- The project directory was not recognized as a Git repository during the last
-  status check.
+- Source-signal scoring, persistence, labeling, reporting, and feedback are not
+  implemented yet.
+- The project is now a Git repository. The last observed commit before Day 4
+  implementation was `1f2323b initial commit`.
 
 ## Next actions
 
@@ -121,15 +133,16 @@ committed.
    test.
 7. Add `OPENAI_API_KEY` and `OPENAI_MODEL` locally, then run one user-approved
    live extraction against a synthetic fixture.
-8. Begin Day 4: bounded orchestration and tool tracing.
+8. Run one user-approved live `process` command against a synthetic fixture.
+9. Begin Day 5: source intelligence and direct-outreach prioritization.
 
-## Day 4 target
+## Day 5 target
 
-Implement a minimal bounded orchestration flow that connects normalized email
-input, structured extraction, preference loading, and deterministic evaluation.
-Add a typed orchestration state, a small tool registry, maximum-iteration guard,
-dry-run enforcement, and concise tool traces. Do not add destructive tools or a
-multi-agent framework.
+Implement deterministic source-signal scoring while keeping it separate from
+job-fit scoring. Add direct-company recruiter heuristics, LinkedIn direct versus
+alert handling, personalized/profile-reference signals, typed priority policy,
+and explainable signal components. Do not apply Gmail labels yet; labeling and
+persistence remain Day 6.
 
 ## Resume instructions
 
